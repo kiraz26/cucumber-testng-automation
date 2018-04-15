@@ -65,6 +65,7 @@ public class HRAppStepDefs {
 	public void i_search_for_email_to_see_firstname_and_lastname(String emailID) {
 		deptEmpPage.email.sendKeys(emailID);
 		deptEmpPage.FindDetails.click();
+		BrowserUtils.waitForVisibility(deptEmpPage.firstname, 5);
 		UIDepartmentData = new HashMap<>();
 		UIDepartmentData.put("FIRST_NAME", deptEmpPage.firstname.getText());
 		UIDepartmentData.put("LAST_NAME", deptEmpPage.lastname.getText());
