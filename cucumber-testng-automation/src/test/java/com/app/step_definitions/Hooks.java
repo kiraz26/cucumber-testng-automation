@@ -18,7 +18,7 @@ public class Hooks {
 	public void setUp(Scenario scenario) {
 		WebDriver driver = Driver.getDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.manage().window().fullscreen();
+		driver.manage().window().maximize();
 	}
 
 	@After
@@ -29,7 +29,7 @@ public class Hooks {
 			// adding the screenshot to the report
 			scenario.embed(screenshot, "image/png");
 		}
-		Driver.closeDriver();
+		//Driver.closeDriver();
 	}
 
 }

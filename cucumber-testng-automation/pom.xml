@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.app</groupId>
@@ -17,6 +18,7 @@
 			<artifactId>cucumber-sandwich</artifactId>
 			<version>3.15.0</version>
 		</dependency>
+
 
 
 		<dependency>
@@ -62,9 +64,22 @@
 			<version>3.17</version>
 		</dependency>
 
+		<dependency>
+			<groupId>oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.3</version>
+			<scope>test</scope>
+		</dependency>
 
 
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>oracle</id>
+			<url>http://www.datanucleus.org/downloads/maven2/</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
@@ -74,7 +89,7 @@
 				<version>2.21.0</version>
 				<configuration>
 					<suiteXmlFiles>
-					<!-- this line tell maven surefire plugin which file should be executed-->
+						<!-- this line tell maven surefire plugin which file should be executed -->
 						<suiteXmlFile>${runner}</suiteXmlFile>
 					</suiteXmlFiles>
 					<testFailureIgnore>true</testFailureIgnore>
