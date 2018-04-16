@@ -63,12 +63,24 @@ public class HRAppStepDefs {
 
 	@When("^I search for email \"([^\"]*)\" to see firstname and lastname$")
 	public void i_search_for_email_to_see_firstname_and_lastname(String emailID) {
+		deptEmpPage.email.clear();
 		deptEmpPage.email.sendKeys(emailID);
 		deptEmpPage.FindDetails.click();
 		BrowserUtils.waitForVisibility(deptEmpPage.firstname, 5);
 		UIDepartmentData = new HashMap<>();
 		UIDepartmentData.put("FIRST_NAME", deptEmpPage.firstname.getText());
 		UIDepartmentData.put("LAST_NAME", deptEmpPage.lastname.getText());
+	}
+
+	@When("^I search for department id (\\d+) and get number of employees$")
+	public void i_search_for_department_id_and_get_number_of_employees(int deptID) {
+		deptEmpPage.searchForDepartment(deptID);
+		deptEmpPage.detach.click();
+		BrowserUtils.waitFor(2);
+		BrowserUtils.scrollDown();
+		UIDepartmentData = new HashMap<>();
+		UIDepartmentData.put("EMPLOYEES_COUNT", String.valueOf(deptEmpPage.employeesCount.size()));
+
 	}
 
 	@Then("^UI data and Database data must match$")

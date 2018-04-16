@@ -22,6 +22,13 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BrowserUtils {
+	
+	public static void scrollDown() {
+		JavascriptExecutor jse = (JavascriptExecutor)Driver.getDriver(); 
+		jse.executeScript("scroll(0, 250);");
+		
+	}
+	
 
 	public static void hover(WebElement element) {
 		Actions actions = new Actions(Driver.getDriver());
