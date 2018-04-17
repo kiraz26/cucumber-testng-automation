@@ -51,7 +51,7 @@ public class MenuOptionsStepDefinitions {
 		// compare the list with options
 		assertEquals(topMenuOptionsString.size(), options.size(), "Number of expected menu options did not match");
 		for (int i = 0; i < options.size(); i++) {
-			assertEquals(topMenuOptionsString.get(i), options.get(i));
+			assertEquals(topMenuOptionsString.get(i).toLowerCase(), options.get(i).toLowerCase());
 		}
 
 	}
