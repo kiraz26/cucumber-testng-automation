@@ -50,20 +50,21 @@ public class CreatingTasksStepDefs {
 	@And("^Start date is todays date$")
 	public void start_date_is_todays_date() {
 	    LocalDate today = LocalDate.now();
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	    String todaysDate = today.format(formatter).toString();
 	    
 	    createTaskPage.date_start_date.sendKeys(todaysDate + Keys.TAB);
 	    
 	    createTaskMap.put("Start Date", todaysDate);
 	    
-	    System.out.println(LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")).toString());
+	    //System.out.println(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString());
 	    
 	}
 
 	@And("^Due date is (\\d+) days after todays date$")
 	public void due_date_is_days_after_todays_date(int daysAhead) {
-	   String dueDate=LocalDate.now().plusDays(daysAhead).format(DateTimeFormatter.ofPattern("MM/dd/yyyy")).toString();
+	   String dueDate=LocalDate.now().plusDays(daysAhead).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString();
+	   dueDate+=" 11:00";
 	   createTaskPage.date_due_date.sendKeys(dueDate + Keys.TAB);
 	   createTaskMap.put("Due Date", dueDate);
 	}
@@ -93,8 +94,8 @@ public class CreatingTasksStepDefs {
 
 	   overviewTaskMap.put("Subject", summaryPage.subject.getText());
 	   overviewTaskMap.put("Status", summaryPage.status.getAttribute("value"));
-	   overviewTaskMap.put("Start Date", summaryPage.date_start.getText().replace(" 12:00am", ""));
-	   overviewTaskMap.put("Due Date", summaryPage.date_due.getText().replace(" 12:00am", ""));
+	   overviewTaskMap.put("Start Date", summaryPage.date_start.getText().replace(" 11:00", ""));
+	   overviewTaskMap.put("Due Date", summaryPage.date_due.getText().replace(" 11:00am", ""));
 	   overviewTaskMap.put("Priority", summaryPage.priority.getAttribute("value"));
 	   overviewTaskMap.put("Description", summaryPage.description.getText());
 	   
