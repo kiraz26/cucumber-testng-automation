@@ -57,7 +57,7 @@ public class CreatingTasksStepDefs {
 	    
 	    createTaskMap.put("Start Date", todaysDate);
 	    
-	    //System.out.println(LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")).toString());
+	    System.out.println(LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")).toString());
 	    
 	}
 
