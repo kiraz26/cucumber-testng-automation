@@ -34,20 +34,21 @@ public class APIDay3_GSON {
 		assertEquals(map.get("job_id"), "AC_MGR");
 
 	}
-	
+
 	@Test
 	public void convertJsonToListOfMaps() {
 		Response response = given().accept(ContentType.JSON).when()
 				.get(ConfigurationReader.getProperty("hrapp.baseresturl") + "/departments");
-		//convert the response that contains depatment information into list of maps
-		//HashMap<String, String> map = response.as(HashMap.class); // DE-SERIALIZATION
-		//List<Map<String, String>> listOfMaps = response.as(ArrayList.class);
+		// convert the response that contains depatment information into list of maps
+		// HashMap<String, String> map = response.as(HashMap.class); // DE-SERIALIZATION
+		// List<Map<String, String>> listOfMaps = response.as(ArrayList.class);
 		List<Map> listOfMaps = response.jsonPath().getList("items", Map.class);
 		System.out.println(listOfMaps.get(0));
-		//assert that first depatmnet name is "Administration"
+		// assert that first depatmnet name is "Administration"
 		assertEquals(listOfMaps.get(0).get("department_name"), "Administration");
-		
+
 	}
+
 	
 
 }
