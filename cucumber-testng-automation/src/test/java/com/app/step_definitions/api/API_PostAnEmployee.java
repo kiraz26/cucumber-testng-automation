@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import com.app.pages.HRAppDeptEmpPage;
+import com.app.pages.HRappSearchPage;
+import com.app.utilities.BrowserUtils;
 import com.app.utilities.ConfigurationReader;
 
 import io.restassured.http.ContentType;
@@ -24,6 +27,9 @@ public class API_PostAnEmployee {
 	int employeeId;
 	Response response;
 	Map requestMap = new HashMap<>();
+	HRappSearchPage searchPage = new HRappSearchPage();;
+	HRAppDeptEmpPage deptEmpPage = new HRAppDeptEmpPage();
+	Map uiEmployeeDataMap;
 
 	@Given("^Content Type and Accept type is JSON$")
 	public void content_Type_and_Accept_type_is_JSON() {
@@ -78,4 +84,39 @@ public class API_PostAnEmployee {
 			assertEquals(responseMap.get(key), requestMap.get(key));
 		}
 	}
+
+	@Then("^I search for Employee with \"([^\"]*)\" id$")
+	public void i_search_for_Employee_with_id(String id) {
+		if (!id.equals("random")) {
+			employeeId = Integer.parseInt(id);
+		}
+
+		deptEmpPage.query.click();
+		searchPage.empIdSearchField.clear();
+		searchPage.empIdSearchField.sendKeys(String.valueOf(employeeId));
+		searchPage.search.click();
+
+	}
+
+	@Then("^UI search results must match API post employee data$")
+	public void ui_search_results_must_match_API_post_employee_data() {
+		BrowserUtils.waitFor(3);
+
+		uiEmployeeDataMap = new HashMap<>();
+		uiEmployeeDataMap.put("employee_id", Integer.valueOf(searchPage.employeeId.getAttribute("value")));
+		uiEmployeeDataMap.put("first_name", searchPage.firstName.getAttribute("value"));
+		uiEmployeeDataMap.put("last_name", searchPage.lastName.getAttribute("value"));
+		uiEmployeeDataMap.put("email", searchPage.email.getAttribute("value"));
+		// uiEmployeeDataMap.put("hire_date",searchPage.hireDate.getAttribute("value"));
+		uiEmployeeDataMap.put("job_id", searchPage.jobId.getAttribute("value"));
+		uiEmployeeDataMap.put("salary", Integer.valueOf(searchPage.salary.getAttribute("value")));
+		uiEmployeeDataMap.put("department_id", Integer.valueOf(searchPage.departmentId.getText()));
+
+		// compare the data againist Json data used in POST api / MAP
+		for (Object key : uiEmployeeDataMap.keySet()) {
+			System.out.println(key + ": " + uiEmployeeDataMap.get(key) + "<=>" + requestMap.get(key));
+			assertEquals(uiEmployeeDataMap.get(key), requestMap.get(key));
+		}
+	}
+
 }

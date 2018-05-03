@@ -69,7 +69,7 @@ public class UITestsStepDefs {
 		int actual = searchResultsPage.resultsLink(searchTerm).size();
 		assertEquals(actual, count, "number of results did not match");
 	}
-	
+
 	public void asdfasdf() {
-                     	}
+	}
 }
