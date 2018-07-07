@@ -4,7 +4,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @CucumberOptions(plugin = { "pretty", "html:target/cucumber-report",
-		"json:target/cucumber.json" }, 
+		"json:target/cucumber.json", "rerun:target/rerun.txt" }, 
 		tags = "@ApiPost", 
 		features = { "src/test/resources/com/app/features/",
 				"src/test/resources/com/app/hrapp_features/" }, 

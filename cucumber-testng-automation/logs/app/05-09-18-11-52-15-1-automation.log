@@ -1,0 +1,3 @@
+09.05.2018 11:52:14 DEBUG JDBCWithLog4j:29 - Executing query: Select * From employees
+09.05.2018 11:52:14 INFO  JDBCWithLog4j:30 - jdbc:oracle:thin:@ec2-18-220-207-215.us-east-2.compute.amazonaws.com:1521:xe
+09.05.2018 11:52:14 INFO  JDBCWithLog4j:33 - Number of records fetched from database: 0
