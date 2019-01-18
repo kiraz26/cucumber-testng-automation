@@ -5,11 +5,12 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @CucumberOptions(plugin = { "pretty", "html:target/cucumber-report",
 		"json:target/cucumber.json", "rerun:target/rerun.txt" }, 
-		tags = "@ApiPost", 
-		features = { "src/test/resources/com/app/features/",
+		tags = "@a",
+		features = { "src/test/resources/com/app/features/api", "src/test/resources/com/app/features/",
 				"src/test/resources/com/app/hrapp_features/" }, 
-		glue = "com/app/step_definitions/", 
-		dryRun = false)
+		glue = "com/app/step_definitions",
+		dryRun = false
+)
 
 public class CukesRunner extends AbstractTestNGCucumberTests {
 

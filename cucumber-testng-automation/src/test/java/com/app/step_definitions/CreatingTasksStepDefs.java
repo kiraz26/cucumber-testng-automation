@@ -15,7 +15,7 @@ import com.app.pages.SuiteCRMCreateTaskPage;
 import com.app.pages.SuiteCRMDashboardPage;
 import com.app.pages.SuiteCRMTaskSummaryPage;
 
-import cucumber.api.PendingException;
+
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

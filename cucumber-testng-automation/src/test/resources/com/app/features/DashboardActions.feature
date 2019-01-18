@@ -4,7 +4,7 @@ Feature: Note on Dashboard
   Background: 
     Given I logged into suiteCRM
     
-  @smoke  
+  @smoke @a
   Scenario: Post a note on Dashboard
     When I post "Hello Everyone"
     Then Post should be displayed

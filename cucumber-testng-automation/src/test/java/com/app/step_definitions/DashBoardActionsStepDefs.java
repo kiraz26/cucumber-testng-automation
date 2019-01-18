@@ -4,7 +4,7 @@ import static org.testng.Assert.fail;
 
 import com.app.pages.SuiteCRMDashboardPage;
 
-import cucumber.api.PendingException;
+
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
