@@ -11,20 +11,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.swing.tree.RowMapper;
+import java.sql.*;
 
 import org.testng.annotations.Test;
 
+import com.app.utilities.ConfigurationReader;
+
 public class JDBCConnection {
 
-	String oracledbUrl = "jdbc:oracle:thin:@ec2-18-220-207-215.us-east-2.compute.amazonaws.com:1521:xe";
+	String oracledbUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+
 	String oracledbUsername = "hr";
 	String oracledbPassword = "hr";
+	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 
 	@Test
 	public void oracleJDBC() throws SQLException {
 		Connection connection = DriverManager.getConnection(oracledbUrl, oracledbUsername, oracledbPassword);
+
 		// Statement statement = connection.createStatement();
 		Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		ResultSet resultSet = statement.executeQuery("select * from countries");
@@ -66,7 +70,7 @@ public class JDBCConnection {
 		connection.close();
 
 	}
-	
+
 	@Test
 	public void jdbcMetadata() throws SQLException {
 		Connection connection = DriverManager.getConnection(oracledbUrl, oracledbUsername, oracledbPassword);
@@ -74,41 +78,39 @@ public class JDBCConnection {
 		Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		String sql = "select employee_id, last_name, job_id, salary from employees";
 		ResultSet resultSet = statement.executeQuery(sql);
-		//Database metadata
+		// Database metadata
 		DatabaseMetaData dbMetadata = connection.getMetaData();
-		System.out.println("User: "+dbMetadata.getUserName());
-		System.out.println("Database type: "+dbMetadata.getDatabaseProductName());
-		//ResultSet metadata
+		System.out.println("User: " + dbMetadata.getUserName());
+		System.out.println("Database type: " + dbMetadata.getDatabaseProductName());
+		// ResultSet metadata
 		ResultSetMetaData rsMetadata = resultSet.getMetaData();
-		System.out.println("Columns count: "+rsMetadata.getColumnCount());
+		System.out.println("Columns count: " + rsMetadata.getColumnCount());
 		System.out.println(rsMetadata.getColumnName(1));
 		// print all column names using a loop
 		for (int i = 1; i <= rsMetadata.getColumnCount(); i++) {
-			System.out.println(i + " -> "+rsMetadata.getColumnName(i));
+			System.out.println(i + " -> " + rsMetadata.getColumnName(i));
 		}
 		// Throw resultSet into a List of Maps
 		// Create a List of Maps
 		List<Map<String, Object>> list = new ArrayList<>();
 		ResultSetMetaData rsMdata = resultSet.getMetaData();
 		int colCount = rsMdata.getColumnCount();
-		while(resultSet.next()) {
+		while (resultSet.next()) {
 			Map<String, Object> rowMap = new HashMap<>();
-			for (int col = 1; col <= colCount ; col++) {
+			for (int col = 1; col <= colCount; col++) {
 				rowMap.put(rsMdata.getColumnName(col), resultSet.getObject(col));
 			}
 			list.add(rowMap);
 		}
-		
+
 		// print all employee ids from a list of maps
 		for (Map<String, Object> map : list) {
 			System.out.println(map.get("EMPLOYEE_ID"));
 		}
-		
-		
+
 		resultSet.close();
 		statement.close();
 		connection.close();
 	}
-	
 
 }

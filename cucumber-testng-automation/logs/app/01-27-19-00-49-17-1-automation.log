@@ -1,0 +1,3 @@
+27.01.2019 00:49:17 INFO  JDBCWithLog4j:21 - Establishing database connection
+27.01.2019 00:49:17 ERROR JDBCWithLog4j:37 - Something went wrong!
+27.01.2019 00:49:17 ERROR JDBCWithLog4j:38 - No suitable driver found for jdbc:sqlserver://fluent-express-test.database.windows.net:1433

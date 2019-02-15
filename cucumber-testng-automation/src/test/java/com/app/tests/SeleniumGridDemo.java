@@ -41,7 +41,7 @@ public class SeleniumGridDemo {
 	@Test
 	public void testGoogle() throws InterruptedException {
 		driver.get("https://google.com");
-		driver.findElement(By.id("lst-ib")).sendKeys("Halo" + Keys.ENTER);
+		driver.findElement(By.xpath("/html/body/div/div[3]/form/div[2]/div/div[1]/div/div[1]/input")).sendKeys("Halo" + Keys.ENTER);
 		System.out.println(driver.getTitle());
 		assertTrue(driver.getTitle().startsWith("Halo"));
 

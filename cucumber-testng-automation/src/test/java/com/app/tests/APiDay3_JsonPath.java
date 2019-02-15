@@ -152,6 +152,4 @@ public class APiDay3_JsonPath {
 
 	}
 
-	
-
 }

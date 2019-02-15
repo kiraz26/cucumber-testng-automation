@@ -1,0 +1,4 @@
+26.01.2019 18:46:08 INFO  JDBCWithLog4j:21 - Establishing database connection
+26.01.2019 18:46:09 ERROR JDBCWithLog4j:37 - Something went wrong!
+26.01.2019 18:46:09 ERROR JDBCWithLog4j:38 - ORA-28001: the password has expired
+

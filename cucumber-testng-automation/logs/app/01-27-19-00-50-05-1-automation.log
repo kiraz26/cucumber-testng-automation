@@ -1,0 +1,4 @@
+27.01.2019 00:50:04 INFO  JDBCWithLog4j:21 - Establishing database connection
+27.01.2019 00:50:04 ERROR JDBCWithLog4j:37 - Something went wrong!
+27.01.2019 00:50:04 ERROR JDBCWithLog4j:38 - ORA-28000: the account is locked
+
