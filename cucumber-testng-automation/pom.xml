@@ -126,19 +126,13 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M3</version>
+			
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
 					<includes>
 						<include>**/*CukesRunner.java</include>
 						<include>**/*FailedScenarios.java</include>
 					</includes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M3</version>
-				<configuration>
 					<suiteXmlFiles>
 						<!-- this line tell maven surefire plugin which file should be executed -->
 						<!--suppress UnresolvedMavenProperty -->
@@ -146,7 +140,9 @@
 					</suiteXmlFiles>
 					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
+				
 			</plugin>
+			
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
