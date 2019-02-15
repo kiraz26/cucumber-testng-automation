@@ -142,7 +142,7 @@
 					<suiteXmlFiles>
 						<!-- this line tell maven surefire plugin which file should be executed -->
 						<!--suppress UnresolvedMavenProperty -->
-						<suiteXmlFile>testng_runner.xml</suiteXmlFile>
+						<suiteXmlFile>smoke_test_runner.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
